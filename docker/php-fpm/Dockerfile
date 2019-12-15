@@ -1,4 +1,4 @@
-FROM php:7.2.2-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -25,11 +25,9 @@ RUN apt-get update -yqq && \
         soap \
         sockets
 
-RUN pecl install mcrypt-1.0.1 && \
+RUN pecl install mcrypt-1.0.3 && \
         docker-php-ext-enable mcrypt
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-CMD ["php-fpm"]
+WORKDIR /var/www
 
 EXPOSE 9000
