@@ -20,6 +20,18 @@ class CreateUsersTable extends Migration
             $table->uuid('id');
             $table->string('email')->unique();
             $table->string('password');
+
+            $table->primary('id');
+        });
+
+        Schema::create('users_profile', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->uuid('user_id');
+            $table->string('first_name');
+            $table->string('last_name');
+
+            $table->primary('id');
+            $table->foreign('user_id')->on('users')->onDelete('cascade');
         });
     }
 

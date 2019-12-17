@@ -125,7 +125,7 @@ class UserEntity implements UserContract
      */
     public function profile(): ProfileContract
     {
-        if ($this->profile instanceof ProfileContract) {
+        if (!$this->profile instanceof ProfileContract) {
             throw new \UnexpectedValueException('Profile should be assigned to user');
         }
 
@@ -137,7 +137,7 @@ class UserEntity implements UserContract
      */
     public function profileReadonly(): ProfileReadOnlyContract
     {
-        if ($this->profile instanceof ProfileContract) {
+        if (!$this->profile instanceof ProfileContract) {
             throw new \UnexpectedValueException('Profile should be assigned to user');
         }
 
@@ -149,6 +149,10 @@ class UserEntity implements UserContract
      */
     public function assignProfile(ProfileContract $profile): UserContract
     {
+        if ($this->profile instanceof ProfileContract) {
+            throw new \UnexpectedValueException('Profile already assigned');
+        }
+
         $this->profile = $profile;
 
         return $this;
