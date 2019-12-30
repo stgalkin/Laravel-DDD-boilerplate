@@ -21,9 +21,9 @@ class UserEntity implements UserContract
     private UUID $id;
 
     /**
-     * @var ProfileContract
+     * @var null|ProfileContract
      */
-    private ProfileContract $profile;
+    private ?ProfileContract $profile;
 
     /**
      * @var Email

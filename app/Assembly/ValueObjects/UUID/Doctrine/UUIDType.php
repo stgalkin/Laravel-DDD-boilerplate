@@ -47,12 +47,12 @@ class UUIDType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        if (!is_string($value) || $value === '') {
-            return null;
-        }
-
         if ($value instanceof UUID) {
             return $value;
+        }
+
+        if (!is_string($value) || $value === '') {
+            return null;
         }
 
         try {
@@ -75,13 +75,14 @@ class UUIDType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if ($value instanceof UUID) {
+            return $value->toString();
+        }
+
         if (!is_string($value) || $value === '') {
             return null;
         }
 
-        if ($value instanceof UUID) {
-            return $value->toString();
-        }
 
         throw ConversionException::conversionFailed($value, static::NAME);
     }

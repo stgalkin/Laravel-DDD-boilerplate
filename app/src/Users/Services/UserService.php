@@ -30,6 +30,7 @@ class UserService implements UserServiceContract
      * @var Mutator
      */
     private Mutator $mutator;
+
     /**
      * @var UserRepositoryContract
      */
@@ -69,7 +70,7 @@ class UserService implements UserServiceContract
     /**
      * @param array $data
      * @return UserContract
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException|\Exception
      */
     private function create(array $data): UserContract
     {
@@ -83,7 +84,7 @@ class UserService implements UserServiceContract
      * @param array $data
      * @param UserContract $user
      * @return ProfileContract
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException|\Exception
      */
     private function createProfile(array $data, UserContract $user): ProfileContract
     {
@@ -107,6 +108,8 @@ class UserService implements UserServiceContract
         if (Arr::has($data, 'password')) {
             $this->_entity()->changePassword(new HashedPassword(Arr::get($data, 'password')));
         }
+
+        return $this;
     }
 
     /**

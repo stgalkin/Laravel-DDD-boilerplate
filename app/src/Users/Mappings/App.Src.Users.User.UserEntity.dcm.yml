@@ -1,4 +1,4 @@
-App\Components\Users\User\UserEntity:
+App\Src\Users\User\UserEntity:
   type: entity
   table: users
   id:
@@ -12,18 +12,6 @@ App\Components\Users\User\UserEntity:
     password:
       type: string
       nullable: false
-    createdAt:
-      type: datetime
-      nullable: false
-      column: created_at
-    updatedAt:
-      type: datetime
-      nullable: false
-      column: updated_at
-    archivedAt:
-      type: datetime
-      nullable: true
-      column: archived_at
   oneToOne:
     profile:
       targetEntity: App\Src\Users\User\Profile\ProfileEntity

@@ -3,6 +3,7 @@ includes:
 
 parameters:
     inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
     excludes_analyse:
     		- %currentWorkingDirectory%/app/Providers/*
     		- %currentWorkingDirectory%/app/src/*/Migrations/*

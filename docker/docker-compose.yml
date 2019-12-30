@@ -1,15 +1,14 @@
 version: '3.6'
 
 services:
-
   mysql-percona:
     build:
       context: mysql-percona
     environment:
-    - MYSQL_DATABASE=${MYSQL_DATABASE}
-    - MYSQL_USER=${MYSQL_USER}
-    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    - MYSQL_DATABASE=dapp
+    - MYSQL_USER=duser
+    - MYSQL_PASSWORD=dpassword
+    - MYSQL_ROOT_PASSWORD=root
     volumes:
     - ./data/mysql-percona:/var/lib/mysql
     ports:
@@ -37,7 +36,7 @@ services:
     - "8000:80"
     restart: always
     environment:
-    - NGINX_SERVER_NAME=${NGINX_SERVER_NAME}
+    - NGINX_SERVER_NAME=ddd-application
     depends_on:
     - php-fpm
     - mysql-percona

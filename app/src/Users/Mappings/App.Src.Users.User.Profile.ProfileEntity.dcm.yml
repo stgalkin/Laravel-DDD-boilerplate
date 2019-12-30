@@ -14,33 +14,9 @@ App\Src\Users\User\Profile\ProfileEntity:
       type: string
       column: last_name
       nullable: false
-    avatar:
-      type: string
-      column: avatar
-      nullable: true
-    phoneCode:
-      type: string
-      column: phone_code
-      nullable: true
-    phoneNumber:
-      type: string
-      column: phone_number
-      nullable: true
-    position:
-      type: string
-      column: position
-      nullable: true
-    createdAt:
-      type: datetime
-      nullable: false
-      column: created_at
-    updatedAt:
-      type: datetime
-      nullable: false
-      column: updated_at
   oneToOne:
     user:
-      targetEntity: App\Components\Users\User\UserEntity
+      targetEntity: App\Src\Users\User\UserEntity
       inversedBy: profile
       joinColumn:
         name: user_id

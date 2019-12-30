@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        \LaravelDoctrine\ORM\DoctrineServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -175,7 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-//        App\Src\Users\Providers\UserServiceProvider::class,
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+        App\Src\Users\Providers\UserServiceProvider::class,
     ],
 
     /*
@@ -230,4 +230,5 @@ return [
         'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
     ],
+
 ];
