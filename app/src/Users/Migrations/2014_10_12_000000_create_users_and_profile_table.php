@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class CreateUsersTable
+ * Class CreateUsersAndProfileTable
  */
-class CreateUsersTable extends Migration
+class CreateUsersAndProfileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -24,14 +24,18 @@ class CreateUsersTable extends Migration
             $table->primary('id');
         });
 
-        Schema::create('users_profile', function (Blueprint $table) {
+        Schema::create('users_profiles', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('user_id');
             $table->string('first_name');
             $table->string('last_name');
 
             $table->primary('id');
-            $table->foreign('user_id')->on('users')->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -43,5 +47,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('users_profiles');
     }
 }

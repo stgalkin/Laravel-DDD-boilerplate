@@ -93,7 +93,7 @@ class UserServiceProvider extends ServiceProvider
      */
     protected function registerServices(): void
     {
-        $this->app->singleton(UserServiceContract::class, UserService::class);
+        $this->app->bind(UserServiceContract::class, UserService::class);
     }
 
     /**
@@ -103,8 +103,8 @@ class UserServiceProvider extends ServiceProvider
      */
     public function registerMutators(): void
     {
-        $this->app->bind(UserMutator::class, UserMutator::class);
-        $this->app->bind(ProfileMutator::class, ProfileMutator::class);
+        $this->app->singleton(UserMutator::class, UserMutator::class);
+        $this->app->singleton(ProfileMutator::class, ProfileMutator::class);
     }
 
     /**
@@ -114,7 +114,6 @@ class UserServiceProvider extends ServiceProvider
      */
     private function bootConfigs(): void
     {
-        $this->mergeConfigFrom($this->path() . 'Config' . DIRECTORY_SEPARATOR . 'users_integrations.php', 'usersIntegrations');
     }
 
     /**
@@ -142,6 +141,6 @@ class UserServiceProvider extends ServiceProvider
      */
     private function path(): string
     {
-        return base_path('App/Src/Users');
+        return base_path('app/src/Users/');
     }
 }

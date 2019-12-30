@@ -43,11 +43,6 @@ services:
     - mysql-percona
     networks:
     - bridge
-  composer:
-    image: composer:latest
-    volumes:
-    - .:/app
-    command: 'true'
 
 networks:
   bridge:

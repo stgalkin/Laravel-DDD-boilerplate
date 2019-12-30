@@ -2,7 +2,8 @@
 
 namespace App\Assembly\Generators\UUIdv4;
 
-use Ramsey\Uuid\Uuid;
+
+use App\Assembly\Generators\ValueObjets\UUID\UUID;
 
 /**
  * Class UUIDNext
@@ -13,9 +14,9 @@ class UUIDNext implements UUIDNextContract
     /**
      * @inheritDoc
      */
-    public static function next(): Identity
+    public static function next(): UUID
     {
-        return new Identity(Uuid::uuid4()->toString());
+        return new UUID(\Ramsey\Uuid\Uuid::uuid4()->toString());
     }
 
     /**
@@ -23,6 +24,6 @@ class UUIDNext implements UUIDNextContract
      */
     public static function isValid(string $string): bool
     {
-        return Uuid::isValid($string);
+        return \Ramsey\Uuid\Uuid::isValid($string);
     }
 }

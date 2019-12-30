@@ -2,18 +2,22 @@
 
 namespace App\Assembly\Generators\UUIdv4;
 
-use App\Convention\ValueObjects\Identity\Identity;
-use Ramsey\Uuid\Uuid;
 
+use App\Assembly\Generators\ValueObjets\UUID\UUID;
+
+/**
+ * Interface UUIDNextContract
+ * @package App\Assembly\Generators\UUIdv4
+ */
 interface UUIDNextContract
 {
     /**
      * Generate new Identity
      *
-     * @return Identity
-     * @throws \InvalidArgumentException
+     * @return UUID
+     * @throws \InvalidArgumentException|\Exception
      */
-    public static function next(): Identity;
+    public static function next(): UUID;
 
     /**
      * @param string $string
