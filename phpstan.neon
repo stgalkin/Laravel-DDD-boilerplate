@@ -1,0 +1,14 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    excludes_analyse:
+    		- %currentWorkingDirectory%/app/Providers/*
+    		- %currentWorkingDirectory%/app/src/*/Migrations/*
+    		- %currentWorkingDirectory%/app/src/*/Routes/*
+    		- %currentWorkingDirectory%/app/src/*/Tests/*
+    reportUnmatchedIgnoredErrors: false
+
+

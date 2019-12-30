@@ -1,0 +1,19 @@
+App\Src\Users\User\UserEntity:
+  type: entity
+  table: users
+  id:
+    id:
+      type: uuid
+      unique: true
+  fields:
+    email:
+      type: string
+      nullable: false
+    password:
+      type: string
+      nullable: false
+  oneToOne:
+    profile:
+      targetEntity: App\Src\Users\User\Profile\ProfileEntity
+      mappedBy: user
+      cascade: ["persist", "merge"]

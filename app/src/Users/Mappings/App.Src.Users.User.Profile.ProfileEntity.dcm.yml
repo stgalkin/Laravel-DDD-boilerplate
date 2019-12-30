@@ -1,0 +1,23 @@
+App\Src\Users\User\Profile\ProfileEntity:
+  type: entity
+  table: users_profiles
+  id:
+    id:
+      type: identity
+      unique: true
+  fields:
+    firstName:
+      type: string
+      column: first_name
+      nullable: false
+    lastName:
+      type: string
+      column: last_name
+      nullable: false
+  oneToOne:
+    user:
+      targetEntity: App\Src\Users\User\UserEntity
+      inversedBy: profile
+      joinColumn:
+        name: user_id
+        referencedColumnName: id

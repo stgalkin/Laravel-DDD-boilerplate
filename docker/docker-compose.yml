@@ -1,19 +1,20 @@
 version: '3.6'
 
 services:
-
   mysql-percona:
     build:
       context: mysql-percona
     environment:
-    - MYSQL_DATABASE=${MYSQL_DATABASE}
-    - MYSQL_USER=${MYSQL_USER}
-    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    - MYSQL_DATABASE=dapp
+    - MYSQL_USER=duser
+    - MYSQL_PASSWORD=dpassword
+    - MYSQL_ROOT_PASSWORD=root
     volumes:
     - ./data/mysql-percona:/var/lib/mysql
     ports:
     - "3306:3306"
+    networks:
+    - bridge
 
   php-fpm:
     build:
@@ -22,12 +23,8 @@ services:
     - ../:/var/www
     expose:
     - "9000"
-
-  composer:
-    image: composer:latest
-    command: install
-    volumes:
-    - ../:/var/www
+    networks:
+    - bridge
 
   nginx:
     image: nginx:alpine
@@ -39,7 +36,13 @@ services:
     - "8000:80"
     restart: always
     environment:
-    - NGINX_SERVER_NAME=${NGINX_SERVER_NAME}
+    - NGINX_SERVER_NAME=ddd-application
     depends_on:
     - php-fpm
     - mysql-percona
+    networks:
+    - bridge
+
+networks:
+  bridge:
+    driver: bridge
